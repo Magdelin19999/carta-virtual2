@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Mi carta 2{% endblock %}
+{% block style %}
+  <link rel="stylesheet" 
+    href="{{ url_for('static', filename='./css/product.css' ) }}"/> 
+{%endblock%}
+
+
+{% block content %}
+
+{%include 'helpers/header.html'%}
+
+<main class="mt-3 py-5 bg-light">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2 d-flex justify-content-center">
+    <div class="col">
+      <div class="card producto shadow-sm" >
+      <img class="card-img-top " style=" border-radius: 2em 2em 0 0;" src="./static/img/hamburguesa.png" alt="" >
+        <div class="card-body ">
+          <p class="card-text">Combo Hamburguesa Súper Doble Carne</p>
+          <div class="row">
+            <div class="col-8">          
+              <small class="text-muted">21.600</small>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn  px-3">
+                <img src="static/img/bxs-cart-add.svg" alt="" srcset="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card producto shadow-sm" >
+      <img class="card-img-top " style=" border-radius: 2em 2em 0 0;" src="./static/img/hamburguesa.png" alt="" >
+        <div class="card-body ">
+          <p class="card-text">Combo Hamburguesa Súper Doble Carne</p>
+          <div class="row">
+            <div class="col-8">              
+              <small class="text-muted">21.600</small>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn  px-3">
+                <img src="static/img/bxs-cart-add.svg" alt="" srcset="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card producto shadow-sm" >
+      <img class="card-img-top " style=" border-radius: 2em 2em 0 0;" src="./static/img/hamburguesa.png" alt="" >
+        <div class="card-body ">
+          <p class="card-text">Combo Hamburguesa Súper Doble Carne</p>
+          <div class="row">
+            <div class="col-8">              
+              <small class="text-muted">21.600</small>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn  px-3">
+                <img src="static/img/bxs-cart-add.svg" alt="" srcset="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card producto shadow-sm" >
+      <img class="card-img-top " style=" border-radius: 2em 2em 0 0;" src="./static/img/hamburguesa.png" alt="" >
+        <div class="card-body ">
+          <p class="card-text">Combo Hamburguesa Súper Doble Carne</p>
+          <div class="row">
+            <div class="col-8">              
+              <small class="text-muted">21.600</small>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn  px-3">
+                <img src="static/img/bxs-cart-add.svg" alt="" srcset="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card producto shadow-sm" >
+      <img class="card-img-top " style=" border-radius: 2em 2em 0 0;" src="./static/img/hamburguesa.png" alt="" >
+        <div class="card-body ">
+          <p class="card-text">Combo Hamburguesa Súper Doble Carne</p>
+          <div class="row">
+            <div class="col-8">              
+              <small class="text-muted">21.600</small>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn  px-3">
+                <img src="static/img/bxs-cart-add.svg" alt="" srcset="">
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+{%include 'helpers/footer.html'%}
+   
+{% endblock %}
+
