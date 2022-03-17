@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Registro Persona{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='./css/signin.css' ) }}" />
+{%endblock%}
+
+{% block content %}
+
+<div class="mx-auto rounded-3 border bg-light col-xl-10 col-xxl-8 px-2 py-5">
+    <!--     <p>
+        nombre
+        descripcion
+        imagen
+        celular
+        direccion
+        email
+        contraseña
+    </p> -->
+    <form action="{{ url_for('registroEmpresaForm') }}" method="POST" class="p-2 pb-0 p-md-5">
+        <div class="row align-items-center g-lg-5 py-2">
+
+            <div class="col-lg-5 text-center ">
+                <img class="mb-4 img-form" src="/static/img/hamburguesa.png">
+            </div>
+            <div class="col-md-10 mx-auto col-lg-7">
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" placeholder="Nombre Empresa">
+                    <label for="nombreEmpresa">Nombre Empresa</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="descEmpresa" name="descEmpresa" placeholder="Descripcion Empresa">
+                    <label for="descEmpresa">Descripcion Empresa</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="celularEmpresa" name="celularEmpresa" placeholder="Celular Empresa">
+                    <label for="celularEmpresa">Celular Empresa</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="direccionEmpresa" name="direccionEmpresa" placeholder="Direccion Empresa">
+                    <label for="direccionEmpresa">Direccion Empresa</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo Electronico">
+                    <label for="correo">Correo Electronico</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Contraseña">
+                    <label for="contrasenia">Contraseña</label>
+                </div>
+                <!-- <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div> -->
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                <div class="text-center">
+                    <hr class="my-2">
+                    <small class="text-muted text-center">Ya tienes cuenta <a
+                            href="{{ url_for('inicioSesion') }}">Inicia Sesion!!</a></small>
+                </div>
+
+            </div>
+
+
+        </div>
+    </form>
+    <div class="m-0 p-0 text-center">
+        <a href="{{ url_for('home') }}">home!!</a>
+    </div>
+
+</div>
+
+{% endblock %}
