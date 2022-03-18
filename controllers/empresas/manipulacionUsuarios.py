@@ -1,4 +1,4 @@
-from pprint import pprint
+from hashlib import md5
 from models.empresas import mensaje as sendMensaje,setenciasSQLUsusarios as SQL
 
 def datosFormulario(nombreEmpresa,descEmpresa,celularEmpresa,
@@ -19,9 +19,14 @@ def activacion(id):
   
 def encriptarContraseña(contrasenia):
     print('Encriptando contraseña')
-    return contrasenia 
+    
+    return md5(contrasenia.encode("utf-8")).hexdigest() 
 
 def inicioSesion(correo, contrasenia):
     mensaje =''
-    print(SQL.obtenerEmpresa(correo, contrasenia))
     print('inicio de sesion')
+    return (SQL.obtenerEmpresa(correo, encriptarContraseña(contrasenia)))
+    
+
+def  cerrarSesion():
+    SQL.cerrarSesion()
