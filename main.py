@@ -9,14 +9,16 @@ app.secret_key = "magdelinpai"
 @app.get("/")
 def home():
     # mensaje.mensaje()
+    '''     
     if "loggedin" in session:
         print(session["usuario"])
         return render_template("productos/empresa-producto.html")
 
     else:
         print("nada")
-        return render_template("productos/index.html")
-
+        return render_template("productos/index.html") 
+    '''
+    return render_template("productos/index.html")
 
 """
     registro y activacion de empresa 
@@ -45,15 +47,27 @@ def registroEmpresaForm():
         correo,
         contrasenia,
     )
-
-    return render_template("empresas/sing.html")
+    flash('Usuario registrado.... Revisa tu correo Para completar el registro')
+    return redirect(url_for("home"))
+    #return render_template("empresas/sing.html")
 
 
 @app.get("/activar-empresa/<int:id>")
 def activarEmpresa(id):
     print(f"activacion {id}")
 
-    return USUARIOS.activacion(id)
+    resultadiActivacion =  USUARIOS.activacion(id)
+    
+    ## el resultadiActivacion['estado], es para pasar a la vista la clase como atributo al alert y redireccionar 
+    print(resultadiActivacion)
+    flash(resultadiActivacion['mensaje'])
+    '''  '''
+    if resultadiActivacion['estado']:
+        return render_template('empresas/sing.html')
+    else:
+        return render_template('empresas/resgistro.html') 
+    
+        
 
 
 """ parte del inicio de sesion y cerrar sesion """
@@ -69,8 +83,12 @@ def inicioSesion():
 def inicioSesionForm():
     correo = request.form.get("correo")
     contrasenia = request.form.get("contrasenia")
-    estado, mensaje = USUARIOS.inicioSesion(correo, contrasenia)
-    if(estado):
+    resultadoInicio = USUARIOS.inicioSesion(correo, contrasenia)
+    print(resultadoInicio)
+    # mensaje de estado de sesion 
+    flash(resultadoInicio['mensaje'])
+    
+    if(resultadoInicio['estado']):
         print('Ya se inicio de sesion activa')
         return render_template("productos/empresa-producto.html")
         
@@ -87,10 +105,14 @@ def logout():
 
 """ manipulacion productos """
 
+@app.get("/administracion/mis-productos")
+def misProductos():
+    return render_template("productos/empresa-producto.html")
 
-@app.get("/administracion/")
+
+@app.get("/administracion/registro-producto")
 def registroProducto():
-    return render_template("productos/empresa-registro-prod.html",nombre='jeison')
+    return render_template("productos/empresa-registro-prod.html")
 
 
 app.run(app.run(debug=True, host="localhost", port=1000))

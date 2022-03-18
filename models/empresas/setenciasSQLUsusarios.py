@@ -30,9 +30,9 @@ def obtenerDBID(id):
     if empresa:
         print(f"tamaño diccionario {len(empresa)}")
         activarID(empresa["id"])
-        return "Usuario Activado"
+        return {'estado':True, 'mensaje':f'Registro finalizado, inicia sesion  :)' }
 
-    return "Usuario No se pudo Activado"
+    return {'estado':False, 'mensaje':f'Erro al activar Cuenta :(' }
 
 
 def activarID(id):
@@ -40,6 +40,7 @@ def activarID(id):
     cursor = DB.cursor()
     cursor.execute(f"UPDATE usuarios SET estado = 1 WHERE id = {id}")
     cursor.close()
+    
 
 
 def obtenerEmpresa(correo, contrasenia):

@@ -6,8 +6,11 @@
 
 {% block content %}
 
-<div class="card mx-auto " style="width: 50vh;">
+<div class="card mx-auto " style="width: 60vh;">
+
   <div class="card-body text-center">
+  {%include 'helpers/flash.html'%}
+
     <form class="form-signin" action="{{ url_for('inicioSesionForm') }}" method="POST">
       <img class="mb-4 img-form" src="/static/img/hamburguesa.png" alt="">
       <h1 class="h3 mb-3 fw-normal">Empresas</h1>

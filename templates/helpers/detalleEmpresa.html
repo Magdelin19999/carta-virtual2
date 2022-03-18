@@ -1,0 +1,11 @@
+<div class="card empresa mx-auto" >
+    <img src="../../static/img/hamburguesa.png" class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title empresa-title">{{session["usuario"]}}</h5>
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-success" href="{{ url_for('misProductos') }}">Adminstracion</a>
+        <a type="button" class="btn btn-primary" href="{{ url_for('logout') }}">Cerrar sesion</a>
+      </div>
+    </div>
+  </div>

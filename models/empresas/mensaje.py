@@ -8,7 +8,7 @@ def mensaje(correoEmpresa,id):
     password = '1124867339'
     
     msg = EmailMessage()
-    msg.set_content(f'!Hola, {correoEmpresa}, Abre este link, para terminar el proceso de activacion: http://localhost:1000/activar-empresa/{id}')
+    msg.set_content(f'!Hola, {correoEmpresa}, Abre este link, para terminar el proceso de activacion: http://localhost:5000/activar-empresa/{id}')
     print('enviando correo')
 
     msg['Subject']='Asunto de prueba'

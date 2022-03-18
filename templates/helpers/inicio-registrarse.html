@@ -1,0 +1,13 @@
+<button class="btn btn-primary mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#registro-inicio"
+  aria-expanded="false" aria-controls="registro-inicio">
+  Empecemos....
+</button>
+
+<div class="collapse" id="registro-inicio">
+  <div class="card card-body">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a class="btn btn-success" href="{{ url_for('registroEmpresa') }}">Registrarse</a>
+      <a type="button" class="btn btn-primary" href="{{ url_for('inicioSesion') }}">Iniciar sesion</a>
+    </div>
+  </div>
+</div>
