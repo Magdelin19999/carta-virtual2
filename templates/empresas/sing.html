@@ -8,16 +8,16 @@
 
 <div class="card mx-auto " style="width: 50vh;">
   <div class="card-body text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="{{ url_for('inicioSesionForm') }}" method="POST">
       <img class="mb-4 img-form" src="/static/img/hamburguesa.png" alt="">
       <h1 class="h3 mb-3 fw-normal">Empresas</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="correo" placeholder="Correo Electronico">
+        <input type="email" class="form-control" id="correo"  name="correo" placeholder="Correo Electronico">
         <label for="correo">Correo Electronico</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="contrasenia" placeholder="Contraseña">
+        <input type="password" class="form-control" name="contrasenia" id="contrasenia" placeholder="Contraseña">
         <label for="contrasenia">Contraseña</label>
       </div>
 
