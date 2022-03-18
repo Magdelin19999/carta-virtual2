@@ -16,20 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`cartavirtual` /*!40100 DEFAULT CHARACTE
 
 USE `cartavirtual`;
 
-/*Table structure for table `accounts` */
-
-DROP TABLE IF EXISTS `accounts`;
-
-CREATE TABLE `accounts` (
-  `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*Data for the table `accounts` */
-
 /*Table structure for table `usuarios` */
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -43,13 +29,13 @@ CREATE TABLE `usuarios` (
   `correo` varchar(255) NOT NULL,
   `contrasenia` varchar(255) NOT NULL,
   `logoEmpresa` blob,
+  `estado` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`nombreEmpresa`,`descEmpresa`,`celularEmpresa`,`direccionEmpresa`,`correo`,`contrasenia`,`logoEmpresa`) values 
-(24,'edelmo','ilver','123456789','edelmolandia','edelmo@elpasipi.com','12345',NULL);
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
