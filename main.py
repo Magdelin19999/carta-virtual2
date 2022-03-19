@@ -115,4 +115,4 @@ def registroProducto():
     return render_template("productos/empresa-registro-prod.html")
 
 
-app.run(app.run(debug=True, host="localhost", port=1000))
+app.run(app.run(debug=True,))
