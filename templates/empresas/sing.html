@@ -6,9 +6,9 @@
 
 {% block content %}
 
-<div class="card mx-auto " style="width: 60vh;">
+<div class="card mx-auto  card-default" style="width: 60vh;">
 
-  <div class="card-body text-center">
+  <div class="card-body text-center card-default">
   {%include 'helpers/flash.html'%}
 
     <form class="form-signin" action="{{ url_for('inicioSesionForm') }}" method="POST">

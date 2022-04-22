@@ -52,20 +52,25 @@ def registroEmpresaForm():
     #return render_template("empresas/sing.html")
 
 
-@app.get("/activar-empresa/<int:id>")
-def activarEmpresa(id):
-    print(f"activacion {id}")
-
-    resultadiActivacion =  USUARIOS.activacion(id)
+@app.get("/activar-empresa/<token>")
+def activarEmpresa(token):
     
-    ## el resultadiActivacion['estado], es para pasar a la vista la clase como atributo al alert y redireccionar 
-    print(resultadiActivacion)
-    flash(resultadiActivacion['mensaje'])
+    resultadiActivacion =  USUARIOS.returnID(token)
     '''  '''
-    if resultadiActivacion['estado']:
-        return render_template('empresas/sing.html')
+    print(resultadiActivacion)
+    if resultadiActivacion['resultado']:
+        id = resultadiActivacion["id"]
+        result = USUARIOS.activacion(id)
+        flash(result['mensaje'],result['category'])
+        if result['estado']:
+            return render_template('empresas/sing.html')
+        else:
+            return render_template('empresas/resgistro.html') 
     else:
-        return render_template('empresas/resgistro.html') 
+        flash("Finalizo tiempo de activacion","warning")
+        return redirect(url_for("home"))
+        
+        #return render_template('empresas/resgistro.html') 
     
         
 
@@ -114,5 +119,4 @@ def misProductos():
 def registroProducto():
     return render_template("productos/empresa-registro-prod.html")
 
-
-app.run(app.run(debug=True, host="localhost", port=1000))
+app.run(debug=True)

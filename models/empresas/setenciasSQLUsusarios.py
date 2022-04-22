@@ -12,8 +12,9 @@ def insertUsuario(
     cursor.execute(
         f"""INSERT INTO usuarios(nombreEmpresa, descEmpresa, celularEmpresa,
                                         direccionEmpresa, correo, contrasenia) 
-	                VALUES( '{nombreEmpresa}','{descEmpresa}','{celularEmpresa}',
-                            '{direccionEmpresa}', '{correo}','{contrasenia}')"""
+	        VALUES( '{nombreEmpresa}','{descEmpresa}','{celularEmpresa}',
+                    '{direccionEmpresa}', '{correo}','{contrasenia}')
+        """
     )
     idultimo = cursor.lastrowid
     print(f"El usuario registrado con el id:{idultimo}")
@@ -30,9 +31,9 @@ def obtenerDBID(id):
     if empresa:
         print(f"tamaño diccionario {len(empresa)}")
         activarID(empresa["id"])
-        return {'estado':True, 'mensaje':f'Registro finalizado, inicia sesion  :)' }
+        return {'estado':True, 'mensaje':f'Registro finalizado, inicia sesion  :)',"category": "success"}
 
-    return {'estado':False, 'mensaje':f'Erro al activar Cuenta :(' }
+    return {'estado':False, 'mensaje':f'Error al activar Cuenta :(' ,"category": "warning",}
 
 
 def activarID(id):
@@ -55,7 +56,7 @@ def obtenerEmpresa(correo, contrasenia):
     cursor.close()
     if empresa:
         print(f"tamaño diccionario {len(empresa)}")
-        activarID(empresa["id"])
+        #activarID(empresa["id"])
         session["loggedin"] = True
         session["id"] = empresa["id"]
         session["usuario"] = empresa["nombreEmpresa"]
