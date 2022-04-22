@@ -120,3 +120,5 @@ def registroProducto():
     return render_template("productos/empresa-registro-prod.html")
 
 app.run(debug=True)
+
+app.run(app.run(debug=True,))
