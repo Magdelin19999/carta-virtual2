@@ -14,6 +14,7 @@ def datosFormulario(nombreEmpresa,descEmpresa,celularEmpresa,
         print('Enviar mensaje del usuario')
         keyToken = generar.generarKey(resultado)
         sendMensaje.mensaje(correo,resultado,keyToken)
+ 
           
 def returnID(token):
     return generar.returnID(token)
@@ -21,6 +22,9 @@ def returnID(token):
 def activacion(id):
     print(f'recibio activacion {id}')
     return SQL.obtenerDBID(id)
+
+def tokenCambioContra(id):
+    keyToken = generar.generarKey(id)
   
 def encriptarContraseña(contrasenia):
     print('Encriptando contraseña')

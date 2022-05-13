@@ -119,6 +119,14 @@ def misProductos():
 def registroProducto():
     return render_template("productos/empresa-registro-prod.html")
 
+@app.route("/reestablecer/form/")
+def reestablecer():
+    if request.method == 'POST':
+            print("recuperar")
+            return redirect(url_for('home'))
+    return render_template("empresas/cambioContra.html")
+   
+    
+    
 app.run(debug=True)
 
-app.run(app.run(debug=True,))
