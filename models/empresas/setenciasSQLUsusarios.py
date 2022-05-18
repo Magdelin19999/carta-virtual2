@@ -46,13 +46,14 @@ def activarID(id):
 
 def obtenerEmpresa(correo, contrasenia):
     print(correo,contrasenia)
-    
+    empresa =[]
     cursor = DB.cursor(dictionary=True)
     cursor.execute(
         f"""SELECT * FROM usuarios   
                    WHERE correo = '{correo}' AND contrasenia = '{contrasenia}';"""
     )
     empresa = cursor.fetchone()
+    print(f"\n\n\n\n\n\n\n\n\nSELECT * FROM usuarios WHERE correo = '{correo}' AND contrasenia = '{contrasenia}';")
     cursor.close()
     if empresa:
         print(f"tamaño diccionario {len(empresa)}")

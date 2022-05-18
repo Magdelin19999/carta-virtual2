@@ -33,7 +33,7 @@ def encriptarContraseña(contrasenia):
 
 def inicioSesion(correo, contrasenia):
     mensaje =''
-    print('inicio de sesion')
+    print('inicio de sesion'+correo, contrasenia)
     return (SQL.obtenerEmpresa(correo, encriptarContraseña(contrasenia)))
     
 

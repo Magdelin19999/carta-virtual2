@@ -25,7 +25,7 @@ def home():
 """
 
 
-@app.get("/registro-empresa/")
+@app.get("/registro-empresa")
 def registroEmpresa():
     return render_template("empresas/registro.html")
 
@@ -51,6 +51,11 @@ def registroEmpresaForm():
     return redirect(url_for("home"))
     #return render_template("empresas/sing.html")
 
+@app.get("/administracion/editarEmpresa")
+def editarEmpresa():
+    return render_template("empresas/editarEmpresa.html")
+
+
 
 @app.get("/activar-empresa/<token>")
 def activarEmpresa(token):
@@ -72,19 +77,17 @@ def activarEmpresa(token):
         
         #return render_template('empresas/resgistro.html') 
     
-        
-
 
 """ parte del inicio de sesion y cerrar sesion """
 
 
-@app.get("/inicio-sesion/")
+@app.get("/inicio-sesion")
 def inicioSesion():
 
     return render_template("empresas/sing.html")
 
 
-@app.post("/inicio-sesion/")
+@app.post("/inicio-sesion")
 def inicioSesionForm():
     correo = request.form.get("correo")
     contrasenia = request.form.get("contrasenia")
@@ -119,14 +122,12 @@ def misProductos():
 def registroProducto():
     return render_template("productos/empresa-registro-prod.html")
 
-@app.route("/reestablecer/form/")
+@app.route("/reestablecer/form")
 def reestablecer():
     if request.method == 'POST':
             print("recuperar")
             return redirect(url_for('home'))
     return render_template("empresas/cambioContra.html")
    
-    
-    
 app.run(debug=True)
 
