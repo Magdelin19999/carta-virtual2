@@ -8,8 +8,10 @@ username = settings.SMTP_EMAIL
 password = settings.SMTP_PASSWORD
 def mensaje(correoEmpresa,id,keyToken):
     
-    url = url_for('activarEmpresa',token=keyToken, _external=True)
+    url = url_for('activarEmpresa', token=keyToken, _external=True)
+    
     mensaje=f'!Hola, {correoEmpresa}, Abre este link, para terminar el proceso de activacion: {url}'
+    
     subject="Contirnuar con el registro"
     envio(mensaje, subject, correoEmpresa)
 

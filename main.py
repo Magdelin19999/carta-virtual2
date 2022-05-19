@@ -8,21 +8,7 @@ app.secret_key = "magdelinpai"
 
 @app.get("/")
 def home():
-    # mensaje.mensaje()
-    '''     
-    if "loggedin" in session:
-        print(session["usuario"])
-        return render_template("productos/empresa-producto.html")
-
-    else:
-        print("nada")
-        return render_template("productos/index.html") 
-    '''
     return render_template("productos/index.html")
-
-"""
-    registro y activacion de empresa 
-"""
 
 
 @app.get("/registro-empresa")
@@ -32,13 +18,24 @@ def registroEmpresa():
 
 @app.post("/registro-empresa/")
 def registroEmpresaForm():
-    print("holaaa")
+    ''' 
+    form = request.form
+    print('data formulario')
+    print(form)
+    #imagen = request.files.get('inputImagen')
+
+    #f = request.files['file']
+    
+    
+    return redirect(url_for("home")) '''
     nombreEmpresa = request.form.get("nombreEmpresa")
     descEmpresa = request.form.get("descEmpresa")
     celularEmpresa = request.form.get("celularEmpresa")
     direccionEmpresa = request.form.get("direccionEmpresa")
     correo = request.form.get("correo")
     contrasenia = request.form.get("contrasenia")
+    logoEmpresa = request.files['logoEmpresa']
+    print('\n\n\n\n\n\n\n\n\n\n',)
     USUARIOS.datosFormulario(
         nombreEmpresa,
         descEmpresa,
@@ -46,6 +43,7 @@ def registroEmpresaForm():
         direccionEmpresa,
         correo,
         contrasenia,
+        logoEmpresa,
     )
     flash('Usuario registrado.... Revisa tu correo Para completar el registro')
     return redirect(url_for("home"))
@@ -61,10 +59,9 @@ def editarEmpresa():
 def activarEmpresa(token):
     
     resultadiActivacion =  USUARIOS.returnID(token)
-    '''  '''
     print(resultadiActivacion)
+    id = resultadiActivacion["id"]
     if resultadiActivacion['resultado']:
-        id = resultadiActivacion["id"]
         result = USUARIOS.activacion(id)
         flash(result['mensaje'],result['category'])
         if result['estado']:
@@ -73,6 +70,7 @@ def activarEmpresa(token):
             return render_template('empresas/resgistro.html') 
     else:
         flash("Finalizo tiempo de activacion","warning")
+        USUARIOS.eliminarNoActivo(id)
         return redirect(url_for("home"))
         
         #return render_template('empresas/resgistro.html') 

@@ -1,26 +1,29 @@
 from flask import session
 from config import dataBase
+from models.imagenes import binary 
 
 DB = dataBase.DB
 DB.autocommit = True
 
 
 def insertUsuario(
-    nombreEmpresa, descEmpresa, celularEmpresa, direccionEmpresa, correo, contrasenia
+    nombreEmpresa, descEmpresa, celularEmpresa, 
+    direccionEmpresa, correo, contrasenia,logoEmpresa
 ):
     cursor = DB.cursor()
-    cursor.execute(
-        f"""INSERT INTO usuarios(nombreEmpresa, descEmpresa, celularEmpresa,
-                                        direccionEmpresa, correo, contrasenia) 
-	        VALUES( '{nombreEmpresa}','{descEmpresa}','{celularEmpresa}',
-                    '{direccionEmpresa}', '{correo}','{contrasenia}')
-        """
-    )
+    SQL = """INSERT INTO usuarios(  `nombreEmpresa`,`descEmpresa`,
+                                    `celularEmpresa`, `direccionEmpresa`,
+                                    `correo`, `contrasenia`,
+                                    `logoEmpresa`) 
+	        VALUES(%s,%s,%s,%s,%s,%s,%s);"""
+    #convertir a binario el  logoEmpresa
+    logoEmpresa= binary.converBlod(logoEmpresa)
+    AGRS=(nombreEmpresa, descEmpresa, celularEmpresa, direccionEmpresa, correo, contrasenia,logoEmpresa)
+    
+    cursor.execute(SQL, AGRS)
     idultimo = cursor.lastrowid
-    print(f"El usuario registrado con el id:{idultimo}")
     cursor.close()
     return idultimo
-
 
 def obtenerDBID(id):
     empresa = []
@@ -35,17 +38,21 @@ def obtenerDBID(id):
 
     return {'estado':False, 'mensaje':f'Error al activar Cuenta :(' ,"category": "warning",}
 
-
 def activarID(id):
     print("ativando id", id)
     cursor = DB.cursor()
     cursor.execute(f"UPDATE usuarios SET estado = 1 WHERE id = {id}")
     cursor.close()
+def eliminarID(id):
+    cursor = DB.cursor()
+    cursor.execute(f"""DELETE
+                    FROM
+                    `cartavirtual`.`usuarios`
+                    WHERE `id` = {id};""")
+    cursor.close()
     
-
-
 def obtenerEmpresa(correo, contrasenia):
-    print(correo,contrasenia)
+    #print(correo,contrasenia)
     empresa =[]
     cursor = DB.cursor(dictionary=True)
     cursor.execute(
@@ -53,22 +60,22 @@ def obtenerEmpresa(correo, contrasenia):
                    WHERE correo = '{correo}' AND contrasenia = '{contrasenia}';"""
     )
     empresa = cursor.fetchone()
-    print(f"\n\n\n\n\n\n\n\n\nSELECT * FROM usuarios WHERE correo = '{correo}' AND contrasenia = '{contrasenia}';")
     cursor.close()
     if empresa:
-        print(f"tamaño diccionario {len(empresa)}")
-        #activarID(empresa["id"])
-        session["loggedin"] = True
-        session["id"] = empresa["id"]
-        session["usuario"] = empresa["nombreEmpresa"]
-        
+        nuevaSesion(empresa["id"],empresa["nombreEmpresa"],empresa['logoEmpresa'])
         return {'estado':True, 'mensaje':f'Bienvenido {empresa["nombreEmpresa"]}' }
 
     return {'estado':False, 'mensaje':'Error de inicio de sesion :(' }
-    #'SELECT * FROM accounts WHERE correo = %s AND contrasenia = ''
 
-
+def nuevaSesion(id_empresa, nombreEmpresa,logoEmpresa):
+    session["loggedin"] = True
+    session["id"] = id_empresa
+    session["usuario"] = nombreEmpresa
+    session["logoEmpresa"] = binary.converImagen(logoEmpresa,nombreEmpresa)
+        
 def cerrarSesion():
     session.pop("loggedin", None)
     session.pop("id", None)
     session.pop("usuario", None)
+    session.pop("logoEmpresa", None)
+    
